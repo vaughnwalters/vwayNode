@@ -41,6 +41,10 @@ newURL = newURL.replace(/%20/g, ' ');
 console.log("newURL", newURL);
   // factual.get('/t/restaurants-us?filters={"$and":[{"cuisine":{"$includes":"vegan"}}]}&q=${searchText}', function (error, data) {
   factual.get(newURL, function (error, data) {
+    res.header('Access-Control-Allow-Origin', '*');
+    // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    // res.header('Access-Control-Allow-Headers', 'Content-Type');
+
 // factual.get('/t/places-us/schema', function (error, res) {
   // if (error) {
     console.log("error", error);
