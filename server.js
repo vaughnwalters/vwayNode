@@ -33,12 +33,32 @@ app.get('*', (req, res) => {
 
   console.log(req.url)
 // req.url has what comes from the browser
+// let test = `/t/restaurants-us?filters={"$and":[{"cuisine":{"$includes":"vegan"}}]}&q=honolulu hi`
 
+let newURL = `${req.url}`.replace(/%22/g, '"');
+console.log("newURL", newURL);
+newURL = newURL.replace(/%20/g, ' ');
+console.log("newURL", newURL);
   // factual.get('/t/restaurants-us?filters={"$and":[{"cuisine":{"$includes":"vegan"}}]}&q=${searchText}', function (error, data) {
-  factual.get('req.url', function (error, data) {
-    console.log("data", data);
-    // res.send(data)
-  });
+  factual.get(newURL, function (error, data) {
+// factual.get('/t/places-us/schema', function (error, res) {
+  // if (error) {
+    console.log("error", error);
+  // }
+  console.log("data", data.data);
+  // console.log("res", res);
+  // console.log(res.view);
+  res.send(data);
+});
+
+
+  // factual.get(req.url, function (error, data) {
+  //   if (error) {
+  //     console.log("<<<", error);
+  //   }
+  //   console.log("data", data);
+  //   // res.send(data)
+  // });
 })
 
 app.listen(port, () =>
